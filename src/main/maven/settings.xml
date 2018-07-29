@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                        http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <interactiveMode/>
+    <localRepository>${user.home}/.m2/repository</localRepository>
+
+    <mirrors>
+        <!-- Do not use variable substitution in mirrors when using an IDE, it does not works. -->
+        <!-- mirrorOf: pom.xml repositories repository id -->
+        <!--<mirrorOf>central</mirrorOf>-->
+        <!--<mirrorOf>external:*,!github-mvn-repo-wagon-maven-plugin</mirrorOf>-->
+        <mirror>
+            <id>mirror</id>
+            <name>mirror</name>
+            <url>http://nexus3:28081/nexus/repository/maven-public/</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+
+    <offline/>
+
+    <pluginGroups>
+        <pluginGroup>org.apache.maven.plugins</pluginGroup>
+        <pluginGroup>org.apache.tomcat.maven</pluginGroup>
+        <pluginGroup>org.codehaus.mojo</pluginGroup>
+        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+        <pluginGroup>org.springframework.boot</pluginGroup>
+    </pluginGroups>
+
+    <proxies>
+        <!--<proxy><id>http-proxy</id><active>true</active><protocol>http</protocol><host>127.0.0.1</host><port>8080</port><nonProxyHosts>127.0.0.1</nonProxyHosts></proxy>-->
+        <!--<proxy><id>http-proxy</id><active>true</active><protocol>socks5</protocol><host>127.0.0.1</host><port>1080</port><nonProxyHosts>127.0.0.1</nonProxyHosts></proxy>-->
+    </proxies>
+
+    <servers>
+        <!-- @formatter:off -->
+        <!-- see: http://maven.apache.org/guides/mini/guide-encryption.html -->
+        <!-- mvn &#x002d;&#x002d;encrypt-password ${password} -->
+        <!-- accept RSA key fingerprint -->
+        <!-- ssh -o UserKnownHostsFile=~/.ssh/known_hosts root@mvnsite -p 10022 -->
+        <server><id>private-nexus3-releases</id><username>deployment</username><password>deployment</password></server>
+        <server><id>private-nexus3-snapshots</id><username>deployment</username><password>deployment</password></server>
+        <server><id>private-nexus3-thirdparty</id><username>deployment</username><password>deployment</password></server>
+        <server>
+            <id>private-mvnsite</id>
+            <username>deployment</username><password>deployment</password>
+            <!--<username>root</username><passphrase>if required</passphrase><privateKey>${user.home}/.ssh/mvnsite.local</privateKey>-->
+            <configuration>
+                <!-- see: https://maven.apache.org/wagon/apidocs/index.html -->
+                <!-- java.lang.ClassNotFoundException: org.apache.maven.wagon.providers.ssh.knownhost.NullKnownHostProvider -->
+                <!--knownHostsProvider implementation="org.apache.maven.wagon.providers.ssh.knownhost.NullKnownHostProvider">
+                    <hostKeyChecking>no</hostKeyChecking>
+                </knownHostsProvider-->
+            </configuration>
+        </server>
+        <server><id>nexus3:5000</id><username>deployment</username><password>deployment</password></server>
+        <!-- @formatter:on -->
+    </servers>
+
+    <profiles>
+    </profiles>
+
+    <usePluginRegistry/>
+</settings>
