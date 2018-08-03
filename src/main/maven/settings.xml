@@ -8,16 +8,13 @@
     <localRepository>${user.home}/.m2/repository</localRepository>
 
     <mirrors>
+        <!-- @formatter:off -->
         <!-- Do not use variable substitution in mirrors when using an IDE, it does not works. -->
         <!-- mirrorOf: pom.xml repositories repository id -->
         <!--<mirrorOf>central</mirrorOf>-->
         <!--<mirrorOf>external:*,!github-mvn-repo-wagon-maven-plugin</mirrorOf>-->
-        <mirror>
-            <id>mirror</id>
-            <name>mirror</name>
-            <url>http://nexus3:28081/nexus/repository/maven-public/</url>
-            <mirrorOf>*</mirrorOf>
-        </mirror>
+        <mirror><id>mirror</id><name>mirror</name><url>http://nexus3:28081/nexus/repository/maven-public/</url><mirrorOf>*</mirrorOf></mirror>
+        <!-- @formatter:on -->
     </mirrors>
 
     <offline/>
@@ -30,6 +27,9 @@
         <pluginGroup>org.springframework.boot</pluginGroup>
     </pluginGroups>
 
+    <profiles>
+    </profiles>
+
     <proxies>
         <!--<proxy><id>http-proxy</id><active>true</active><protocol>http</protocol><host>127.0.0.1</host><port>8080</port><nonProxyHosts>127.0.0.1</nonProxyHosts></proxy>-->
         <!--<proxy><id>http-proxy</id><active>true</active><protocol>socks5</protocol><host>127.0.0.1</host><port>1080</port><nonProxyHosts>127.0.0.1</nonProxyHosts></proxy>-->
@@ -37,13 +37,11 @@
 
     <servers>
         <!-- @formatter:off -->
+        <server><id>nexus3:5000</id><username>deployment</username><password>deployment</password></server>
         <!-- see: http://maven.apache.org/guides/mini/guide-encryption.html -->
         <!-- mvn &#x002d;&#x002d;encrypt-password ${password} -->
         <!-- accept RSA key fingerprint -->
         <!-- ssh -o UserKnownHostsFile=~/.ssh/known_hosts root@mvnsite -p 10022 -->
-        <server><id>private-nexus3-releases</id><username>deployment</username><password>deployment</password></server>
-        <server><id>private-nexus3-snapshots</id><username>deployment</username><password>deployment</password></server>
-        <server><id>private-nexus3-thirdparty</id><username>deployment</username><password>deployment</password></server>
         <server>
             <id>private-mvnsite</id>
             <username>deployment</username><password>deployment</password>
@@ -56,12 +54,11 @@
                 </knownHostsProvider-->
             </configuration>
         </server>
-        <server><id>nexus3:5000</id><username>deployment</username><password>deployment</password></server>
+        <server><id>private-nexus3-releases</id><username>deployment</username><password>deployment</password></server>
+        <server><id>private-nexus3-snapshots</id><username>deployment</username><password>deployment</password></server>
+        <server><id>private-nexus3-thirdparty</id><username>deployment</username><password>deployment</password></server>
         <!-- @formatter:on -->
     </servers>
-
-    <profiles>
-    </profiles>
 
     <usePluginRegistry/>
 </settings>
