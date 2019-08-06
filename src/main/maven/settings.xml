@@ -44,18 +44,34 @@
             <activation><property><name>custom.nexus3</name></property></activation>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>custom-nexus3-snapshots</id>
-                    <name>custom nexus3 snapshots</name>
-                    <url>${custom.nexus3}repository/maven-snapshots/</url>
+                    <id>central</id><name>Maven Central</name><url>https://repo1.maven.org/maven2/</url>
+                    <releases><enabled>true</enabled><updatePolicy>never</updatePolicy></releases>
+                    <snapshots><enabled>false</enabled></snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>ossrh-nexus2-snapshots</id><name>ossrh nexus2 snapshots</name><url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <releases><enabled>false</enabled></releases>
+                    <snapshots><enabled>true</enabled><updatePolicy>daily</updatePolicy></snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>custom-nexus3-snapshots</id><name>custom nexus3 snapshots</name><url>${custom.nexus3}repository/maven-snapshots/</url>
                     <releases><enabled>false</enabled></releases>
                     <snapshots><enabled>true</enabled><updatePolicy>daily</updatePolicy></snapshots>
                 </pluginRepository>
             </pluginRepositories>
             <repositories>
                 <repository>
-                    <id>custom-nexus3-snapshots</id>
-                    <name>custom nexus3 snapshots</name>
-                    <url>${custom.nexus3}repository/maven-snapshots/</url>
+                    <id>central</id><name>Maven Central</name><url>https://repo1.maven.org/maven2/</url>
+                    <releases><enabled>true</enabled><updatePolicy>never</updatePolicy></releases>
+                    <snapshots><enabled>false</enabled></snapshots>
+                </repository>
+                <repository>
+                    <id>ossrh-nexus2-snapshots</id><name>ossrh nexus2 snapshots</name><url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <releases><enabled>false</enabled></releases>
+                    <snapshots><enabled>true</enabled><updatePolicy>daily</updatePolicy></snapshots>
+                </repository>
+                <repository>
+                    <id>custom-nexus3-snapshots</id><name>custom nexus3 snapshots</name><url>${custom.nexus3}repository/maven-snapshots/</url>
                     <releases><enabled>false</enabled></releases>
                     <snapshots><enabled>true</enabled><updatePolicy>daily</updatePolicy></snapshots>
                 </repository>
@@ -87,18 +103,21 @@
             <id>default-public-repositories</id>
             <activation><activeByDefault>true</activeByDefault></activation>
             <repositories>
-                <!-- Make artifacts in OSSRH repositories available -->
                 <repository>
-                    <id>ossrh-nexus2-releases</id>
-                    <name>ossrh nexus2 releases</name>
-                    <url>https://oss.sonatype.org/content/repositories/releases/</url>
+                    <id>central</id><name>Maven Central</name><url>https://repo1.maven.org/maven2/</url>
                     <releases><enabled>true</enabled><updatePolicy>never</updatePolicy></releases>
                     <snapshots><enabled>false</enabled></snapshots>
                 </repository>
+                <!-- Make artifacts in OSSRH repositories available -->
+                <!--
                 <repository>
-                    <id>ossrh-nexus2-snapshots</id>
-                    <name>ossrh nexus2 snapshots</name>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <id>ossrh-nexus2-releases</id><name>ossrh nexus2 releases</name><url>https://oss.sonatype.org/content/repositories/releases/</url>
+                    <releases><enabled>true</enabled><updatePolicy>never</updatePolicy></releases>
+                    <snapshots><enabled>false</enabled></snapshots>
+                </repository>
+                -->
+                <repository>
+                    <id>ossrh-nexus2-snapshots</id><name>ossrh nexus2 snapshots</name><url>https://oss.sonatype.org/content/repositories/snapshots/</url>
                     <releases><enabled>false</enabled></releases>
                     <snapshots><enabled>true</enabled><updatePolicy>daily</updatePolicy></snapshots>
                 </repository>
@@ -106,7 +125,7 @@
             <pluginRepositories>
                 <pluginRepository>
                     <id>central</id>
-                    <name>central</name>
+                    <name>Maven Central</name>
                     <url>https://repo1.maven.org/maven2/</url>
                     <releases><enabled>true</enabled><updatePolicy>never</updatePolicy></releases>
                     <snapshots><enabled>false</enabled></snapshots>

@@ -1,5 +1,5 @@
 # maven-build-opts-local
-CI options and config files for repositories hosted on local git service
+CI options and config files for projects hosted on and deploy to local repository
 
 This is a template repository.
 
